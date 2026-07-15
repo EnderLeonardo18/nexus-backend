@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  // provider = "prisma-client-js"
+  provider = "prisma-client-js"
+  engineType = "library"   // 👈 Agrega esta línea mágica
+  // output   = "../prisma/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  
+}
+model MediaContent {
+  id        Int      @id @default(autoincrement())
+  title     String
+  type      String   
+  year      Int
+  duration  String
+  genres    String   // Almacenará "Aventura, Ciencia ficción"
+  synopsis  String   @db.Text
+  imageUrl  String?  @map("image_url") // Campo de póster opcional pedido por ti
+
+  // Relaciones explícitas e implícitas
+  platforms    MediaPlatform[]
+  
+  // Relación Muchos a Muchos autorreferenciada para vincular alternativas
+  relatedTo    MediaContent[]  @relation("MediaAlternatives")
+  alternatives MediaContent[]  @relation("MediaAlternatives")
+
+  @@map("media_content") 
+}
+
+model Platform {
+  id                  Int             @id @default(autoincrement())
+  name                String          @unique
+  logoLetters         String          @map("logo_letters")
+  requiresSubscription Boolean         @map("requires_subscription")
+
+  media               MediaPlatform[]
+
+  @@map("platforms")
+}
+
+model MediaPlatform {
+  mediaId    Int      @map("media_id")
+  platformId Int      @map("platform_id")
+  directLink String   @map("direct_link")
+
+  media      MediaContent @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+  platform   Platform     @relation(fields: [platformId], references: [id], onDelete: Cascade)
+
+  @@id([mediaId, platformId]) 
+  @@map("media_platforms")
+}
