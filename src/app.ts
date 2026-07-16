@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // 2. Montar las rutas modulares
-// Esto redirigirá '/api/media/search' hacia tu media.routes.ts automáticamente
+// Esto redirigirá '/api/media/search' hacia el media.routes.ts automáticamente
 app.use('/api/media', mediaRoutes);
 
 // Exportamos la instancia de la app lista para ser encendida

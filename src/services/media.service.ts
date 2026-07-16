@@ -26,7 +26,6 @@ export class MediaService {
         type: record.type,
         year: record.year,
         duration: record.duration,
-        // Transforma la cadena "Aventura, Ciencia ficción" en un array de strings limpio
         genres: record.genres.split(',').map((g: string) => g.trim()),
         synopsis: record.synopsis,
 
@@ -48,18 +47,8 @@ export class MediaService {
 
 
 
-
-
-
-
-
-
-
-
-
-
   /**
-   * Retorna todo el catálogo de películas formateado como DTO limpio
+   * Retorna todo el catálogo de películas formateado como DTO limpio (Esto lo uso solo en Postman o Insomnia para testeo con la BD)
    */
   async getAllMovies(): Promise<MediaContentDTO[]> {
     const dbRecords = await this.mediaRepository.getAllWithRelations();

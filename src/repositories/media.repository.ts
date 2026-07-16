@@ -63,17 +63,10 @@ export class MediaRepository {
   }
 
 
-
-
-
-
-
-
-
-
+  
 
   /**
-   * Trae todas las películas de la base de datos junto con sus plataformas y alternativas
+   * Trae todas las películas de la base de datos junto con sus plataformas y alternativas (Esto lo uso solo en Postman o Insomnia para testeo con la BD)
    */
   async getAllWithRelations(): Promise<CompleteMediaRecord[]> {
     const records = await prisma.mediaContent.findMany({

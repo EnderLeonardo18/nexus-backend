@@ -1,12 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  // provider = "prisma-client-js"
   provider = "prisma-client-js"
-  engineType = "library"   // 👈 Agrega esta línea mágica
+  engineType = "library" 
   // output   = "../prisma/generated/client"
 }
 
@@ -20,10 +14,9 @@ model MediaContent {
   type      String   
   year      Int
   duration  String
-  genres    String   // Almacenará "Aventura, Ciencia ficción"
+  genres    String   // Almacenará "Aventura, Ciencia ficción etc"
   synopsis  String   @db.Text
-  imageUrl  String?  @map("image_url") // Campo de póster opcional pedido por ti
-
+  imageUrl  String?  @map("image_url") // Campo de póster opcional
   // Relaciones explícitas e implícitas
   platforms    MediaPlatform[]
   

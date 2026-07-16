@@ -8,6 +8,7 @@ export class MediaController {
         this.mediaService = new MediaService();
     }
 
+    // Buscar
     search = async (req: Request, res: Response): Promise<void> => {
         try {
             const query = req.query.q as string;
@@ -37,7 +38,7 @@ export class MediaController {
 
 
     /**
-     * Endpoint para obtener todo el catálogo de películas
+     * Endpoint para obtener todo el catálogo de películas (Esto lo uso solo en Postman o Insomnia para testeo con la BD)
      */
     getAll = async (req: Request, res: Response): Promise<void> => {
         try {

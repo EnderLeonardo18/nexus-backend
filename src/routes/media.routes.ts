@@ -5,10 +5,14 @@ import { searchLoggerMiddleware } from "../middlewares/search-logger.middleware.
 const router = Router();
 const mediaController = new MediaController();
 
-// Ruta para obtener todo el catálogo (Ideal para pruebas en Insomnia)
-router.get('/all', mediaController.getAll);
 
 // Definimos el endpoint GET para buscar peliculas
 router.get('/search', searchLoggerMiddleware, mediaController.search);
+
+
+
+
+// Ruta para obtener todo el catálogo ( Solo uso para pruebas en Insomnia) 
+router.get('/all', mediaController.getAll);
 
 export default router;
