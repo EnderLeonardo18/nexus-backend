@@ -1,9 +1,13 @@
 -- 1. LIMPIEZA DE DATOS PREVIOS (Usamos DELETE para evitar el bloqueo de TRUNCATE)
 SET FOREIGN_KEY_CHECKS = 0;
+SET SQL_SAFE_UPDATES = 0; -- <-- Apaga la protección contra DELETE masivos
+
 DELETE FROM `_MediaAlternatives`;
 DELETE FROM `media_platforms`;
 DELETE FROM `platforms`;
 DELETE FROM `media_content`;
+
+SET SQL_SAFE_UPDATES = 1; -- <-- La vuelve a encender por seguridad
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- 2. INSERTAR PLATAFORMAS (Con IDs fijos para relacionar fácil)
